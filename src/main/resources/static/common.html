@@ -173,22 +173,6 @@
                 <div class="nav_t">全部商品分类</div>
                 <div class="leftNav">
                     <ul>
-<!--                        <li th:each="levelOne:${list}">-->
-<!--                            <div class="fj">-->
-<!--                                <span class="n_img"></span> <span class="fl" th:text="${levelOne.name}"></span>-->
-<!--                            </div>-->
-<!--                            <div class="zj">-->
-<!--                                <div class="zj_l">-->
-<!--                                    <div class="zj_l_c" th:each="levelTwo:${levelOne.children}">-->
-<!--                                        <h2>-->
-<!--                                            <a th:href="'/product/list/two/'+${levelTwo.id}" th:text="${levelTwo.name}"></a>-->
-<!--                                        </h2>-->
-<!--                                        <a th:href="'/product/list/three/'+${levelThree.id}" th:each="levelThree:${levelTwo.children}" th:text="${levelThree.name}"></a>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </li>-->
-
                         <li th:each="levelOne:${list}">
                             <div class="fj">
                                 <span class="n_img"></span> <span class="fl" th:text="${levelOne.name}"></span>
@@ -210,10 +194,6 @@
             </div>
             <ul class="menu_r">
                 <li><a href="/productCategory/list">首页</a></li>
-<!--                <li th:each="productCategory:${list}">-->
-<!--                    <a th:href="'/product/list/one/'+${productCategory.id}" th:text="${productCategory.name}"></a>-->
-<!--                </li>-->
-
                 <li th:each="levelOne:${list}">
                     <a th:href="'/product/list/one/'+${levelOne.id}" th:text="${levelOne.name}"></a>
                 </li>

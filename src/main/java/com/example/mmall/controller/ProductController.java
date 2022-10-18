@@ -43,6 +43,7 @@ public class ProductController {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("productList");
         modelAndView.addObject("list",productCategoryService.getAllProductCategoryVO());
+        System.out.println("-------------------id:"+id);
         modelAndView.addObject("productList",productService.findByCategoryId(type,id));
         User user = (User) session.getAttribute("user");
         if (user == null){
@@ -57,6 +58,7 @@ public class ProductController {
     public ModelAndView findById(@PathVariable("id") Integer id,HttpSession session){
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("productDetail");
+        modelAndView.addObject("list",productCategoryService.getAllProductCategoryVO());
         modelAndView.addObject("product",productService.getById(id));
         User user = (User) session.getAttribute("user");
         if (user == null){
