@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.example.mmall.entity.User;
 import com.example.mmall.service.CartService;
 import com.example.mmall.service.OrderService;
+import com.example.mmall.service.UserAddressService;
 import com.example.mmall.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
@@ -35,6 +36,8 @@ public class UserController {
     private CartService cartService;
     @Autowired
     private OrderService orderService;
+    @Autowired
+    private UserAddressService userAddressService;
 
     /**
      * 注册
@@ -108,6 +111,18 @@ public class UserController {
         modelAndView.setViewName("orderList");
         modelAndView.addObject("cartList",cartService.finAllCartVOByUserId(user.getId()));
         modelAndView.addObject("order",orderService.ordersVOList(user.getId()));
+        return modelAndView;
+    }
+
+    @GetMapping("/addressList")
+    public ModelAndView addressList(HttpSession session){
+        User user = (User) session.getAttribute("user");
+        QueryWrapper wrapper = new QueryWrapper();
+        wrapper.eq("userid",user.getId());
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("userAddressList");
+        modelAndView.addObject("cartList",cartService.finAllCartVOByUserId(user.getId()));
+        modelAndView.addObject("addressList",userAddressService.list(wrapper));
         return modelAndView;
     }
 }

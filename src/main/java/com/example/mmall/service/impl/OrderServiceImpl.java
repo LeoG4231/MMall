@@ -2,12 +2,10 @@ package com.example.mmall.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.example.mmall.entity.*;
-import com.example.mmall.mapper.CartMapper;
-import com.example.mmall.mapper.OrderDetailMapper;
-import com.example.mmall.mapper.OrderMapper;
-import com.example.mmall.mapper.UserAddressMapper;
+import com.example.mmall.mapper.*;
 import com.example.mmall.service.OrderService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.example.mmall.vo.OrderDetailVO;
 import com.example.mmall.vo.OrdersVO;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +34,8 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Orders> implement
     private OrderMapper orderMapper;
     @Autowired
     private OrderDetailMapper orderDetailMapper;
+    @Autowired
+    private ProductMapper productMapper;
 
     @Override
     public boolean save(Orders orders, User user ,String address ,String remark) {
@@ -99,11 +99,23 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Orders> implement
         List<Orders> ordersList = orderMapper.selectList(wrapper);
         for (Orders orders : ordersList) {
             OrdersVO ordersVO = new OrdersVO();
+            List<OrderDetailVO> orderDetailVOList = new ArrayList<>();
             QueryWrapper wrapper1 = new QueryWrapper();
             wrapper1.eq("orderid",orders.getId());
             List<OrderDetail> orderDetail = orderDetailMapper.selectList(wrapper1);
+            for (OrderDetail detail : orderDetail) {
+                OrderDetailVO orderDetailVO = new OrderDetailVO();
+                QueryWrapper wrapper2 = new QueryWrapper();
+                wrapper2.eq("id",detail.getProductid());
+                Product product = productMapper.selectOne(wrapper2);
+                BeanUtils.copyProperties(detail,orderDetailVO);
+                orderDetailVO.setName(product.getName());
+                orderDetailVO.setFilename(product.getFilename());
+                orderDetailVO.setPrice(product.getPrice());
+                orderDetailVOList.add(orderDetailVO);
+            }
             BeanUtils.copyProperties(orders,ordersVO);
-            ordersVO.setOrderDetailList(orderDetail);
+            ordersVO.setOrderDetailVOList(orderDetailVOList);
             ordersVOList.add(ordersVO);
         }
         return ordersVOList;

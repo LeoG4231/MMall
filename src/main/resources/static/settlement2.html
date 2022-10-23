@@ -27,18 +27,6 @@
                         <td class="car_th" width="150">购买数量</td>
                         <td class="car_th" width="130">小计</td>
                     </tr>
-
-<!--                    <tr th:each="cart:${cartList}">-->
-<!--                        <td align="center">-->
-<!--                            <div class="c_s_img">-->
-<!--                                <img th:src="'/images/'+${cart.fileName}" width="73" height="73"/>-->
-<!--                            </div>-->
-<!--                            <div th:text="${cart.name}"></div>-->
-<!--                        </td>-->
-<!--                        <td align="center" th:text="${cart.quantity}"></td>-->
-<!--                        <td align="center" class="qprice" style="color:#ff4e00;" th:text="'￥'+${cart.cost}"></td>-->
-<!--                    </tr>-->
-
                     <tr th:each="cart:${cartList}">
                         <td align="center">
                             <div class="c_s_img">
@@ -74,15 +62,6 @@
                 </div>
                 <form id="form" action="/order/settlement3" method="post">
                     <table border="0" class="peo_tab" style="width:1110px;" cellspacing="0" cellpadding="0">
-
-<!--                        <tr th:each="address:${addressList}">-->
-<!--                            <td class="p_td" width="160">-->
-<!--                                <input type="radio" th:if="${address.isdefault == 1}" checked name="userAddress" th:value="${address.address}">-->
-<!--                                <input type="radio" th:if="${address.isdefault == 0}" name="userAddress" th:value="${address.address}">-->
-<!--                            </td>-->
-<!--                            <td th:text="${address.address}"></td>-->
-<!--                        </tr>-->
-
                         <tr th:each="address:${addressList}">
                             <td class="p_td" width="160">
                                 <input type="radio" th:if="${address.isdefault == 1}" checked name="useraddress" th:value="${address.address}">

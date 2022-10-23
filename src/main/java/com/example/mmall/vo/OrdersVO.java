@@ -1,6 +1,5 @@
 package com.example.mmall.vo;
 
-import com.example.mmall.entity.OrderDetail;
 import lombok.Data;
 
 import java.util.List;
@@ -13,5 +12,5 @@ public class OrdersVO {
     private String serialnumber;
     private String useraddress;
     private Float cost;
-    private List<OrderDetail> orderDetailList;
+    private List<OrderDetailVO> orderDetailVOList;
 }

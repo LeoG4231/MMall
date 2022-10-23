@@ -27,33 +27,6 @@
                     <td class="car_th" width="130">小计</td>
                     <td class="car_th" width="150">操作</td>
                 </tr>
-
-
-<!--                <tr class="goods" th:each="cart:${cartList}">-->
-<!--                    <td>-->
-<!--                        <div class="c_s_img">-->
-<!--                            <a><img th:src="'/images/'+${cart.fileName}" width="73" height="73" /></a>-->
-<!--                        </div>-->
-<!--                        <div th:text="${cart.name}"></div>-->
-<!--                    </td>-->
-<!--                    <td align="center" style="color: #ff4e00;" id="price" th:text="${cart.price}"></td>-->
-<!--                    <td align="center">-->
-<!--                        <div class="c_num">-->
-<!--                            <input type="hidden" class="productPrice" th:value="${cart.price}"/>-->
-<!--                            <input type="hidden" class="productStock" th:value="${cart.stock}"/>-->
-<!--                            <input type="button" value="" onclick="subQuantity(this)" class="car_btn_1" />-->
-<!--                            <input type="text" th:value="${cart.quantity}" name="quantit" class="car_ipt" readonly="readonly" />-->
-<!--                            <input type="button" value="" onclick="addQuantity(this);" class="car_btn_2" />-->
-<!--                        </div>-->
-<!--                    </td>-->
-<!--                    <input type="hidden" class="id" th:value="${cart.id}" />-->
-<!--                    <td align="center" style="color: #ff4e00;" class="qprice" th:text="'￥'+${cart.cost}"></td>-->
-<!--                    <td align="center">-->
-<!--                        <a href="javascript:void(0);"-->
-<!--                                          onclick="removeCart(this);" class="delete">删除</a></td>-->
-<!--                </tr>-->
-
-
                 <tr class="goods" th:each="cart:${cartList}">
                     <td>
                         <div class="c_s_img">
@@ -65,7 +38,6 @@
                     <td align="center">
                         <div class="c_num">
                             <input type="hidden" class="productPrice" th:value="${cart.price}"/>
-<!--                            <input type="hidden" class="productStock" th:value="${cart.stock}"/>-->
                             <input type="button" value="" onclick="subQuantity(this)" class="car_btn_1" />
                             <input type="text" th:value="${cart.quantity}" name="quantit" class="car_ipt" readonly="readonly" />
                             <input type="button" value="" onclick="addQuantity(this);" class="car_btn_2" />
